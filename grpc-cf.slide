@@ -1,0 +1,203 @@
+Deploying RPC services to CloudFoundry
+An introduction to gRPC + Go
+14 Oct 2016
+
+Will Madison
+Senior Software Engineer, Pivotal Labs
+wmadison@pivotal.io
+https://willmadison.com
+@IAmWillMadison
+
+* What we'll cover
+
+- Brief Go Primer
+- Overview of gRPC
+- Demo
+- Q & A
+
+* A Primer on Go
+
+* What is Go?
+
+.link http://golang.org golang.org
+
+- Go is a statically typed, compiled, open source "systems language" developed @ Google in 2009
+- Conceived by Rob Griesemer (V8), Rob Pike (Plan 9, UTF-8, Unix), & Ken Thompson (Unix, B) 
+- Born out of the pain of waiting on large C++ projects to build
+
+    "Back around September 2007, I was doing some minor but central work on an enormous Google C++ 
+     program, one you've all interacted with, and my compilations were taking about 45 
+     minutes on our huge distributed compile cluster"
+      -- Rob Pike
+
+* Why?
+
+- Ease of use
+- Developer Productivity
+- Extremely Feature Rich Standard Library
+- Sane Concurrency
+- FAST Builds!
+- Painless Setup
+
+* Comparing Go and Java
+
+* Go and Java have much in common
+
+- C family (imperative, braces)
+- Statically typed
+- Garbage collected
+- Memory safe (nil references, runtime bounds checks)
+- Variables are always initialized (zero/nil/false)
+- Methods
+- Interfaces
+- Type assertions (`instanceof`)
+- Reflection
+
+* Go differs from Java in several ways
+
+- Programs compile to machine code.  There's no VM.
+- Statically linked binaries
+- Control over memory layout
+- Function values and lexical closures
+- Built-in strings (UTF-8)
+- Built-in generic maps and arrays/slices
+- Built-in concurrency
+
+* Go intentionally leaves out many features
+
+- No classes
+- No constructors
+- No inheritance
+- No `final`
+- No exceptions
+- No annotations
+- No user-defined generics
+
+* Quick Fun Example
+
+* Web Server within a presentation....Why not!?!?
+
+Let's say we want to build a very simple hello world web service with the following requirements:
+
+- Given a name in a get parameter the service politely says hello to that person
+- In the absence of a given name a sensible default should be used.
+
+Let's build it from within this presentation!
+
+* Hello Server
+
+.play grpc-cf/hello.go
+
+* Mind Blowing...Right?!?!?!
+
+.image grpc-cf/magic.gif
+
+.image grpc-cf/mindblown.gif
+
+* Concurrency
+
+- Concurrent programming in go is touted as one if it's most popular features.
+
+- Go utilizes two primary concurrency primitives: Goroutines and Channels.
+
+* Concurrency
+
+    "Don't communicate by sharing memory, share memory by communicating...."
+       -- Rob Pike
+
+- Goroutines are lightweight, "green" threads which are multiplexed onto a single OS thread by the Go runtime.
+
+- Channels are essentially typed "pipes" which are used to pass data back and forth between goroutines.
+
+- Communication on a channel is a lockstep, blocking operation (i.e. sender blocks until someone is ready to receive)
+
+* Ping Pong!
+
+.play grpc-cf/pingpong.go /START OMIT/,/END OMIT/
+
+
+* What is gRPC?
+
+* gRPC is an RPC system from Google
+
+.link http://grpc.io
+
+Provides unary RPC and streaming RPC support
+
+Based largely on an RPC library called Stubby used internally @ Google.
+
+Support for Ten languages: *C*, *Java*, *Go*, C++, Node.js, Python, Ruby, Objective-C, PHP, and C#
+
+* Unary vs Streaming RPC in gRPC
+
+*Unary*RPC*: the client sends a _request_ to the server, then the server sends a _response_.
+
+Unary RPC: one request, one response
+
+Example: a client application app requests a answer for a given math problem.
+
+On the client side, an RPC blocks until it's done or canceled.
+
+A client uses multiple goroutines to run many RPCs simultaneously.
+
+Each RPC is an exchange between a client goroutine and a server goroutine.
+
+* Unary vs Streaming RPC in gRPC
+
+*Streaming*RPC:* the client and server may each send one or more messages.
+
+*Characteristics*of*Streaming*RPC*:
+
+- bidirectional message-passing
+- FIFO message delivery
+- buffering and flow control provided by the underlying transport
+- many streams can run simultaneously between the same client and server.
+
+* Unary vs Streaming RPC in gRPC
+
+Example Streaming RPC use cases:
+
+- bidirectional stream: chat session
+- server → client stream: sports betting line changes
+- client → server stream: sensor output aggregation
+
+An streaming RPC ends when:
+
+- both sides are done sending messages,
+- either side disconnects, or
+- the RPC is canceled or times out
+
+* Running gRPC on P Dubs (basically PCF as a service)
+
+Use case: RPC Service for translating text to Yoda speak (because why not?)
+
+Key Tools: 
+
+- The awesome wsnet library available at (github.com/lstoll/wsnet)
+- cf CLI (also written in go :D )
+- PWS (Pivotal Web Services)
+
+* The Client
+
+.code grpc-cf/yodecho_client.go /START DIAL/,/END DIAL/
+.code grpc-cf/yodecho_client.go /START ECHO/,/END ECHO/
+
+* Demo
+
+* Questions?
+
+.image grpc-cf/gopher.jpg
+
+* More Resources
+
+Hand's Down Best Collection of Resources for beginners I've seen in the Go Community:
+
+.link http://dave.cheney.net/resources-for-new-go-programmers
+
+Take the Go Tour online.
+
+.link http://tour.golang.org
+
+Lots more material.
+
+.link http://golang.org/wiki/Learn
