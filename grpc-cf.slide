@@ -182,7 +182,7 @@ Key Tools:
 .code grpc-cf/yodecho_client.go /START DIAL/,/END DIAL/
 .code grpc-cf/yodecho_client.go /START ECHO/,/END ECHO/
 
-* Demo
+* Demo: Yodecho Chat!
 
 * Questions?
 
