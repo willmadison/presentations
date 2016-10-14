@@ -115,7 +115,6 @@ Let's build it from within this presentation!
 
 .play grpc-cf/pingpong.go /START OMIT/,/END OMIT/
 
-
 * What is gRPC?
 
 * gRPC is an RPC system from Google
@@ -132,9 +131,9 @@ Support for Ten languages: *C*, *Java*, *Go*, C++, Node.js, Python, Ruby, Object
 
 *Unary*RPC*: the client sends a _request_ to the server, then the server sends a _response_.
 
-Unary RPC: one request, one response
+Unary RPC: *one* request, *one* response
 
-Example: a client application app requests a answer for a given math problem.
+Example: a client application app requests an answer for a given math problem.
 
 On the client side, an RPC blocks until it's done or canceled.
 
@@ -176,6 +175,18 @@ Key Tools:
 - The awesome wsnet library available at (github.com/lstoll/wsnet)
 - cf CLI (also written in go :D )
 - PWS (Pivotal Web Services)
+
+* High Level Architecture
+
+.image grpc-cf/yodecho_architecture.png 1500 1000
+
+* The Server
+
+.code grpc-cf/yodecho_server.go /START SERVE/,/END SERVE/
+
+* The Server (cont.)
+
+.code grpc-cf/yodecho_server.go /START YODECHO/,/END YODECHO/
 
 * The Client
 

@@ -14,7 +14,7 @@ func main() {
 		if name = queryParameters.Get("name"); name == "" {
 			name = "Mr./Ms. Anonymous"
 		}
-		fmt.Fprintf(response, "Hello %s!", name) // HL
+		fmt.Fprintf(response, "Heeeeeeeeeey %s!", name) // HL
 	})
 
 	port := "9100"
