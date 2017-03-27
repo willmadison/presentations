@@ -1,0 +1,71 @@
+Kotlin for Gophers
+An introduction to Kotlin
+10 Apr 2016
+
+Will Madison
+Senior Software Engineer, Pivotal Labs
+will@willmadison.com
+https://willmadison.com
+@IAmWillMadison
+
+* What we'll cover
+
+- Brief Kotlin Primer
+- Demo (Go Idioms in Kotlin)
+- Q & A
+
+* A Primer on Kotlin
+
+* What is Kotlin?
+
+.link http://kotlinlang.org kotlinlang.org
+
+- Kotlin is a a statically typed, compiled, open source developed by Jetbrains in 2010
+- Conceived by Dmitry Jemerov due to shortcomings of most other languages for the JVM
+- 100% Interoperable with Java (Meaning you get access to all the libraries you know and love!)
+- Extremely concise, expressive, and pragmatic (much like Go)
+
+    "First and foremost, it's about our own productivity. We are still writing all of our IntelliJ 
+     based IDEs almost entirely in Java. We want to become more productive by switching to a more 
+     expressive language. At the same time, we cannot accept compromises in terms of either Java 
+     interoperability or compilation speed."
+
+      -- Dmitry Jemerov "Why JetBrains needs Kotlin" (https://goo.gl/xyXKMQ)
+
+* Who's using Kotlin?
+
+- Pivotal ([[http://engineering.pivotal.io/categories/kotlin/]])
+- JetBrains
+- Netflix ([[https://github.com/nebula-plugins/nebula-kotlin-plugin]])
+- Amex ([[https://github.com/americanexpress/bucketlist]])
+- Square ([[https://www.youtube.com/watch?v=A2LukgT2mKc]])
+
+* Demo (Go Idioms translated to Kotlin)
+
+* Hello World!
+
+hello.go
+
+.play kotlin-for-gophers/hello.go
+
+hello.kt
+
+.code kotlin-for-gophers/hello.kt
+
+* Questions?
+
+.image kotlin-for-gophers/kotlin.png
+
+* More Resources
+
+Slack
+
+.link http://kotlinslackin.herokuapp.com/
+
+Try Kotlin
+
+.link https://try.kotlinlang.org
+
+Lots more material.
+
+.link https://kotlin.link
