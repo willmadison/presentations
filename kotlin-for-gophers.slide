@@ -52,6 +52,73 @@ hello.kt
 
 .code kotlin-for-gophers/hello.kt
 
+* Flow Control
+
+* Switch Statements
+
+.play kotlin-for-gophers/switch.go
+
+* When Statements
+
+.code kotlin-for-gophers/when.kt
+
+* Maps
+
+.play kotlin-for-gophers/maps.go
+
+* Maps cont.
+
+.code kotlin-for-gophers/maps.kt
+
+* Slices
+
+.play kotlin-for-gophers/slices.go
+
+* Slices cont.
+
+.code kotlin-for-gophers/slices.kt
+
+* Functional Options
+
+options.go
+
+.code kotlin-for-gophers/options.go /START TYPEDEF/,/END TYPEDEF/
+.code kotlin-for-gophers/options.go /START OPTIONS/,/END OPTIONS/
+
+* Functional Options
+
+options.kt
+
+.code kotlin-for-gophers/options.kt
+
+* More Idiomatic Kotlin Approach
+
+idiomatic_options.kt
+
+.code kotlin-for-gophers/idiomatic_options.kt
+
+* More Kotlin Goodies
+
+* Inferred Return Types
+
+.code kotlin-for-gophers/goodies.kt /START INFERREDRETURN/,/END INFERREDRETURN/
+
+* If's As Expressions
+
+.code kotlin-for-gophers/goodies.kt /START IFASEXPRESSION/,/END IFASEXPRESSION/
+
+* Smart Casts
+
+.code kotlin-for-gophers/goodies.kt /START SMARTCAST/,/END SMARTCAST/
+
+* Extension Functions
+
+.code kotlin-for-gophers/goodies.kt /START EXTENSIONFUN/,/END EXTENSIONFUN/
+
+* Functional Primitives
+
+.code kotlin-for-gophers/goodies.kt /START FUNCTIONALPRIMS/,/END FUNCTIONALPRIMS/
+
 * Questions?
 
 .image kotlin-for-gophers/kotlin.png
