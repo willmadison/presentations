@@ -60,3 +60,20 @@ fun main(args: Array<String>) {
 }
 
 // END FUNCTIONALPRIMS OMIT
+
+// START STRINGGOODIES OMIT
+
+fun main(args: Array<String>) {
+    val url = "https://www.reddit.com/r/golang"
+    println(url.substringAfterLast("/")) // golang
+    println(url.substringBeforeLast("/")) // https://www.reddit.com/r
+    println("will".capitalize()) // Will
+    println("WILL".decapitalize()) // wILL
+    println("WILL".reversed()) // LLIW
+    println("WILL".padEnd(10, '!')) // WILL!!!!!!
+    println("(Without Parenthesis)".removeSurrounding("(", ")")) // Without Parenthesis
+
+    // and many more....
+}
+
+// END STRINGGOODIES OMIT

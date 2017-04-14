@@ -1,6 +1,6 @@
 Kotlin for Gophers
 An introduction to Kotlin
-10 Apr 2016
+25 Apr 2016
 
 Will Madison
 Senior Software Engineer, Pivotal Labs
@@ -11,7 +11,7 @@ https://willmadison.com
 * What we'll cover
 
 - Brief Kotlin Primer
-- Demo (Go Idioms in Kotlin)
+- Sample Code: Go Idioms in Kotlin
 - Q & A
 
 * A Primer on Kotlin
@@ -34,13 +34,13 @@ https://willmadison.com
 
 * Who's using Kotlin?
 
-- Pivotal ([[http://engineering.pivotal.io/categories/kotlin/]])
 - JetBrains
 - Netflix ([[https://github.com/nebula-plugins/nebula-kotlin-plugin]])
 - Amex ([[https://github.com/americanexpress/bucketlist]])
 - Square ([[https://www.youtube.com/watch?v=A2LukgT2mKc]])
+- Pivotal ([[http://engineering.pivotal.io/categories/kotlin/]])
 
-* Demo (Go Idioms translated to Kotlin)
+* Code Samples: Go Idioms translated to Kotlin
 
 * Hello World!
 
@@ -91,6 +91,14 @@ options.kt
 
 .code kotlin-for-gophers/options.kt
 
+* Nil Receivers
+
+.play kotlin-for-gophers/nilreceiver.go
+
+* Null Receivers
+
+.code kotlin-for-gophers/nullreceiver.kt
+
 * More Idiomatic Kotlin Approach
 
 idiomatic_options.kt
@@ -118,6 +126,10 @@ idiomatic_options.kt
 * Functional Primitives
 
 .code kotlin-for-gophers/goodies.kt /START FUNCTIONALPRIMS/,/END FUNCTIONALPRIMS/
+
+* Lots of Helpful String Extension Functions
+
+.code kotlin-for-gophers/goodies.kt /START STRINGGOODIES/,/END STRINGGOODIES/
 
 * Questions?
 
