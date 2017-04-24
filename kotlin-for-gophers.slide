@@ -62,6 +62,14 @@ hello.kt
 
 .code kotlin-for-gophers/when.kt
 
+* Channels
+
+.play kotlin-for-gophers/sieve.go /START SNIPPET/,/END SNIPPET/
+
+* Channels
+
+.code kotlin-for-gophers/seive.kt
+
 * Maps
 
 .play kotlin-for-gophers/maps.go
