@@ -1,0 +1,147 @@
+Meet Go(lang)
+A guided tour of the Go programming language
+8 Mar 2018
+
+Will Madison
+Senior Software Engineer, Pivotal Labs
+wmadison@pivotal.io
+https://willmadison.com
+@IAmWillMadison
+
+* What makes Go so great?
+
+* Productivity
+
+.image a-guided-tour-of-go/productivity.gif
+
+* Small Surface Area
+
+Here is a list of all of the keywords in the Go language:
+
+    break        default      func         interface    select
+    case         defer        go           map          struct
+    chan         else         goto         package      switch
+    const        fallthrough  if           range        type
+    continue     for          import       return       var
+
+* Surface Area
+
+For comparison here is an equivalent listing for Java:
+
+    abstract	continue	for         new	        switch
+    assert***   default     goto*       package	    synchronized
+    boolean     do          if          private	    this
+    break       double      implements  protected	throw
+    byte        else        import      public      throws
+    case        enum****	instanceof	return      transient
+    catch       extends     int         short       try
+    char        final       interface   static      void
+    class       finally     long        strictfp**  volatile
+    const*      float       native      super       while
+
+
+    *       not used
+    **      added in 1.2
+    ***     added in 1.4
+    ****    added in 5.0
+
+* Tooling
+
+.image a-guided-tour-of-go/tooling.gif
+
+* Tooling
+
+The Go Tool (the swiss army knife of language tools)
+
+	build       compile packages and dependencies
+	clean       remove object files
+	doc         show documentation for package or symbol
+	env         print Go environment information
+	bug         start a bug report
+	fix         run go tool fix on packages
+	fmt         run gofmt on package sources
+	generate    generate Go files by processing source
+	get         download and install packages and dependencies
+	install     compile and install packages and dependencies
+	list        list packages
+	run         compile and run Go program
+	test        test packages
+	tool        run specified go tool
+	version     print Go version
+	vet         run go tool vet on packages
+
+* Tooling
+
+For comparison, if you're going to utilize Java/Spring for example you have several decisions to make:
+
+- Which build tool? Gradle? Maven?
+- Which application server? Tomcat? Resin? Jetty?
+- Which logging framework? Log4J? Logback? Apache Commons Logging?
+- Which testing framework? JUnit4? JUnit5? TestNG?
+- Should we use Lombok?
+
+* Expressiveness
+
+.play a-guided-tour-of-go/expressive.go /START EXPRESSIVE/,/END EXPRESSIVE/
+
+versus
+
+.code a-guided-tour-of-go/verbose.java /START VERBOSE/,/END VERBOSE/
+
+* Speed
+
+.image a-guided-tour-of-go/speed.gif
+
+* Speed
+
+Here's the timing difference for building a basic hello world server in Go vs Java:
+
+Go:
+
+    will@Gryffindor:~/workspace/src/github.com/willmadison/playground/hello$ time go build
+
+    real	0m0.641s
+    user	0m0.616s
+    sys	0m0.068s
+    will@Gryffindor:~/workspace/src/github.com/willmadison/playground/hello$ 
+
+Java:
+
+    will@Gryffindor:~/git/github/hello-server$ time ./gradlew build
+    BUILD SUCCESSFUL
+
+    Total time: 9.351 secs
+
+    real	0m9.831s
+    user	0m1.688s
+    sys	0m0.072s
+    will@Gryffindor:~/git/github/hello-server$
+
+* Speed & Simplicity
+
+.play a-guided-tour-of-go/hello-server.go
+
+* Runtime Characteristics
+
+.image a-guided-tour-of-go/benchmarks.png
+
+.caption Courtesy of the Benchmarks Game @ http://benchmarksgame.alioth.debian.org/u64q/go.html
+
+* Lack of Magic
+
+.image a-guided-tour-of-go/magic.gif
+
+* It Coding Time!
+
+.image a-guided-tour-of-go/coding-time.gif
+
+* Chuck Norris
+
+.image a-guided-tour-of-go/chuck.gif
+
+.link https://github.com/willmadison/norris
+
+
+* Questions
+
+.image a-guided-tour-of-go/gopher.png
