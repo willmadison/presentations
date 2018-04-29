@@ -1,0 +1,50 @@
+Real World: Agility, Legacy Code, and You
+Putting "Working Effectively with Legacy Code" in Action
+1 May 2018
+
+Will Madison
+Senior Software Engineer, Pivotal Labs
+wmadison@pivotal.io
+https://willmadison.com
+@IAmWillMadison
+
+* Our Journey
+
+* Our Journey
+
+- Defining Legacy Code
+- Legacy Code Techniques
+- Taming huge classes...without making them larger
+- Reasoning about the effect of changing certain code
+- Workshop Exercise: The Gnarly Exception Handler
+- Questions/Feedback
+
+* What is Legacy Code
+
+* Legacy Code Techniques: Making changes when time is short
+
+* Legacy Code Techniques: Sprout Method/Class
+
+- placeholder
+
+* Legacy Code Techniques: Wrap Method/Class
+
+- placeholder
+
+* Legacy Code Techniques: Working with Monster Methods
+
+* Legacy Code Techniques: Skeletonization
+
+- placeholder
+
+* Legacy Code Techniques: This class is already huge...but I need to change it
+
+* Legacy Code Techniques: Seeing responsibilities
+
+* Questions
+
+.image agility-legacy-code-and-you/there-it-is.gif
+
+* Resources
+
+.link https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052
