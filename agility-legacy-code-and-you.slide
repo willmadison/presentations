@@ -173,7 +173,7 @@ Domain/Ubiquitous Language:
 
 Your task:
 
-- Recently the operations manager introduced a new procedure on the fulfillment floor in that Picks now have a *TRIAGE* status which indicates that the pick is being triaged by a special team of pickers. 
+- Recently the Operations (Ops) Manager introduced a new process  on the fulfillment floor in that Picks now have a *TRIAGE* status which indicates that the pick is being triaged by a special team of Ninja pickers. 
 - Unfortunately, this has caused the *ExceptionHandler* to have a bug in it's pick completion handling logic. Since this process change, the Ops Manager has noticed that updates aren't appropriately flowing through to the Consoldation system downstream.
 
 * Questions
