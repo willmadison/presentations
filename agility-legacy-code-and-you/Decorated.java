@@ -8,9 +8,11 @@ public class Decorated {
     }
 
     private class DefaultUser implements User {
+
         public String first;
         public String last;
 
+        @Override
         public boolean hasAccess() {
             return false;
         }

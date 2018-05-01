@@ -3,7 +3,7 @@ Putting "Working Effectively with Legacy Code" into Action
 1 May 2018
 
 Will Madison
-Senior Software Engineer, Pivotal Labs
+Engineering Manager/Senior Software Engineer, Pivotal Labs
 wmadison@pivotal.io
 https://willmadison.com
 @IAmWillMadison
@@ -15,7 +15,7 @@ https://willmadison.com
 * Our Journey
 
 - Defining Legacy Code
-- Legacy Code Techniques
+- Legacy Code Management Techniques
 - Workshop Exercise: The Gnarly Exception Handler
 - Questions/Feedback
 
@@ -37,7 +37,7 @@ https://willmadison.com
     When we change code, we ought to have tests in place. 
     To get tests in place, we often have to change code.
 
-* Modifying Legacy Code: The General Algorithm
+* Modifying Legacy Code: The General Approach
 
 1. Identify change points.
 2. Find test points.
@@ -45,7 +45,7 @@ https://willmadison.com
 4. Write tests.
 5. Make changes and refactor.
 
-* Legacy Code Techniques: Making changes when time is short
+* Legacy Code Techniques: Making changes when time is limited
 
 * Legacy Code Techniques: Sprout Method/Class
 
@@ -57,6 +57,31 @@ https://willmadison.com
 
 .code agility-legacy-code-and-you/PostSproutMethod.java /START SNIPPET/,/END SNIPPET/
 
+* Legacy Code Techniques: Sprout Method/Class
+
+Advantages
+
+- Ability to move forward with your work with greater confidence 
+- Clear separation of new (covered) source code from old code 
+- Easier ability to determine if the new code is in the right context
+
+Disadvantages
+
+- Potential cluttering of the public API of your classes
+- Additional complexity
+- Potentially unclear abstractions
+- None of the existing source comes under test (Slight boy/girl scout rule violation)
+
+* Legacy Code Techniques: Wrap Method/Class
+
+* Legacy Code Techniques: Wrap Method/Class
+
+.code agility-legacy-code-and-you/Unwrapped.java /START SNIPPET/,/END SNIPPET/
+
+* Legacy Code Techniques: Wrap Method/Class
+
+.code agility-legacy-code-and-you/Wrapped.java /START SNIPPET/,/END SNIPPET/
+
 * Legacy Code Techniques: Wrap Method/Class
 
 .code agility-legacy-code-and-you/Undecorated.java /START SNIPPET/,/END SNIPPET/
@@ -65,11 +90,61 @@ https://willmadison.com
 
 .code agility-legacy-code-and-you/Decorated.java /START SNIPPET/,/END SNIPPET/
 
+* Legacy Code Techniques: Wrap Method/Class
+
+Advantages
+
+- Doesn't make drastic changes to existing methods
+- Makes the new functionality completly independent of the existing functionality.
+
+Disadvantages
+
+- Can lead to some bad abstractions/poor naming
+- Depending on the situation it may be hard to test the newly wrapped method
+
 * Legacy Code Techniques: Working with Monster Methods
 
 * Legacy Code Techniques: Skeletonization
 
-- placeholder
+Skeletonizing a method is a practice by which much of the body of the original method is extracted (using automated refactoring tools) into a series of helper methods leaving nothing but the branching logical skeleton of the original method.
+
+* Legacy Code Techniques: Skeletonization
+
+.code agility-legacy-code-and-you/Unskeletonized.java /START SNIPPET/,/END SNIPPET/
+
+* Legacy Code Techniques: Skeletonization
+
+After:
+
+.code agility-legacy-code-and-you/Skeletonized.java /START SNIPPET/,/END SNIPPET/
+
+* Legacy Code Techniques: Skeletonization
+
+Advantages
+
+- Really helps to clarify what's actually being done and highlight logical flow
+
+Disadvantages
+
+- May lead to more context switching with the proliferation of many small methods
+- Some helpers may seem like overkill for things that could be just as expressive when inlined.
+
+* Legacy Code Techniques: Working with Monster Classes
+
+* Legacy Code Techniques: Seeing/Sensing Responsibilities
+
+Quite often extremely large classes are usually big violators of the Single Responsiblity Principle. There are several techniques to sense these conflicting responsiblities and break them out:
+ 
+- Method Grouping
+- Scrutinize Hidden Methods
+- Looking for Decisions that Can Change
+- Looking for Internal Relationships
+
+* Legacy Code Techniques: Other Useful Tips
+
+- Scratch refactoring
+- Feature sketching
+- The urge to expose private methods for testing
 
 * Workshop: The Case of the Gnarly Exception Handler
 
@@ -99,7 +174,7 @@ Domain/Ubiquitous Language:
 Your task:
 
 - Recently the operations manager introduced a new procedure on the fulfillment floor in that Picks now have a *TRIAGE* status which indicates that the pick is being triaged by a special team of pickers. 
-- Unfortunately, this has caused the *ExceptionHandler* to have a bug in it's pick completion handling logic. Since this process change, the Ops Manager noticed that updates aren't appropriately flowing through to the Consoldation system downstream.
+- Unfortunately, this has caused the *ExceptionHandler* to have a bug in it's pick completion handling logic. Since this process change, the Ops Manager has noticed that updates aren't appropriately flowing through to the Consoldation system downstream.
 
 * Questions
 
