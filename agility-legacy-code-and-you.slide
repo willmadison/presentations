@@ -1,5 +1,5 @@
 Real World: Agility, Legacy Code, and You
-Putting "Working Effectively with Legacy Code" in Action
+Putting "Working Effectively with Legacy Code" into Action
 1 May 2018
 
 Will Madison
@@ -10,26 +10,60 @@ https://willmadison.com
 
 * Our Journey
 
+.image agility-legacy-code-and-you/lean-software-may-meetup.png
+
 * Our Journey
 
 - Defining Legacy Code
 - Legacy Code Techniques
-- Taming huge classes...without making them larger
-- Reasoning about the effect of changing certain code
 - Workshop Exercise: The Gnarly Exception Handler
 - Questions/Feedback
 
 * What is Legacy Code
 
+* Defining Legacy Code
+
+    "Legacy Code is simply code without tests. Code without tests is bad code. It doesn't matter
+     how well written it is; it doesn't matter how pretty or object-oriented or well-encapsulated
+     it is. With tests, we can change the behavior of our code quickly and verifiably. Without them,
+     we really don't know if our code is getting better or worse."
+
+      -- Michael Feathers "Working Effectively With Legacy Code"
+
+* Modifying Legacy Code
+
+* Modifying Legacy Code: The Dilemma
+
+    When we change code, we ought to have tests in place. 
+    To get tests in place, we often have to change code.
+
+* Modifying Legacy Code: The General Algorithm
+
+1. Identify change points.
+2. Find test points.
+3. Break dependencies.
+4. Write tests.
+5. Make changes and refactor.
+
 * Legacy Code Techniques: Making changes when time is short
 
 * Legacy Code Techniques: Sprout Method/Class
 
-- placeholder
+- Test driving a net NEW method/class implementation with the added functionality
+
+.code agility-legacy-code-and-you/PreSproutMethod.java /START SNIPPET/,/END SNIPPET/
+
+* Legacy Code Techniques: Sprout Method/Class
+
+.code agility-legacy-code-and-you/PostSproutMethod.java /START SNIPPET/,/END SNIPPET/
 
 * Legacy Code Techniques: Wrap Method/Class
 
-- placeholder
+.code agility-legacy-code-and-you/Undecorated.java /START SNIPPET/,/END SNIPPET/
+
+* Legacy Code Techniques: Wrap Method/Class
+
+.code agility-legacy-code-and-you/Decorated.java /START SNIPPET/,/END SNIPPET/
 
 * Legacy Code Techniques: Working with Monster Methods
 
@@ -37,9 +71,35 @@ https://willmadison.com
 
 - placeholder
 
-* Legacy Code Techniques: This class is already huge...but I need to change it
+* Workshop: The Case of the Gnarly Exception Handler
 
-* Legacy Code Techniques: Seeing responsibilities
+.image agility-legacy-code-and-you/hold-on-to-your-butts.gif
+
+* Workshop: The Case of the Gnarly Exception Handler
+
+.link https://github.com/willmadison/legacy-code-katas
+
+Context:
+
+- This is a derivation of a piece of a real production system
+- It was originally developed under a huge time crunch with limited Resources
+
+Domain/Ubiquitous Language:
+
+- Pick: a single task on the warehouse floor (i.e. grabbing a thing from a shelf)
+- Consolidation: the system/place in the warehouse where parts of an order come together for shipment.
+- Straggler: a part of an order which hasn't shown up in consolidation yet.
+- WMS: Warehouse management system.
+- Anything I missed feel free to ask!
+
+* Workshop: The Case of the Gnarly Exception Handler
+
+.link https://github.com/willmadison/legacy-code-katas
+
+Your task:
+
+- Recently the operations manager introduced a new procedure on the fulfillment floor in that Picks now have a *TRIAGE* status which indicates that the pick is being triaged by a special team of pickers. 
+- Unfortunately, this has caused the *ExceptionHandler* to have a bug in it's pick completion handling logic. Since this process change, the Ops Manager noticed that updates aren't appropriately flowing through to the Consoldation system downstream.
 
 * Questions
 
