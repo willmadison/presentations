@@ -1,0 +1,46 @@
+Beyond RESTful
+A forray into other API design approaches
+21 May 2019
+
+Will Madison
+Associate Director, Pivotal Labs
+wmadison@pivotal.io
+https://willmadison.com
+@IAmWillMadison
+
+* What we'll cover
+
+- Ground Rules/Level Setting
+- Shortcomings of RESTful APIs
+- Remembering an old friend: Remote Procedure Call (RPC)
+- Examples: gRPC & Twirp
+- Questions
+
+* Ground Rules
+
+- Be Kind
+- Critcize the Ideas NOT People
+- Have Fun
+- Be openminded
+
+* Now that we have that out of the way...
+
+* Let's Begin...
+
+.image beyond-restful/here-we-go.gif
+
+* Shortcomings of RESTful APIS
+
+* Overemphasis on Routing Schemes/Patterns
+
+    Imagine a very, very simple mini-service which just updates a user’s email address. 
+    How are we going to accept requests?
+
+- `POST` `/users/:id/email`, body is the updated email address
+- `PUT` `/users/:id/email`, body is the updated email address
+- `POST` `(or` `PUT)` `/users/:username`, body is the JSON encoded user with different email address (i.e. `{"email": "shiny@new.com"}`)
+- `PATCH` `/users/:username/info`, body is some JSON describing the edits to be made
+
+Other considerations:
+
+- What should it return? What headers should be set? What about versioning?
