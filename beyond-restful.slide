@@ -68,6 +68,8 @@ Other considerations:
 
 - `PUT` symantics for updates generally dictate that a full representation of the resource as retrieved via a `GET` call be provided with whatever modifications made in place. 
 - What should an API do when a `PUT` (or `PATCH`) is issued which includes Read Only fields?
+- Idempotency? Don't get me started...
+- Should I set a `Location` header for a newly created resource?
 
 * Perpetual debate on which HTTP status codes make sense in context
 
@@ -90,6 +92,10 @@ Common flame wars in REST API design
 * Keeping API Documentation in Sync with Implementation can be Cumbersome
 
 .code beyond-restful/OpenApiSpecificationExample.java
+
+* Keeping API Documentation in Sync with Implementation can be Cumbersome
+
+.code beyond-restful/OpenApiSpecificationExample2.java
 
 * A refreshing look at an old friend: Remote Procedure Calls
 
