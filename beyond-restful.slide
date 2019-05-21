@@ -1,5 +1,5 @@
 Beyond RESTful
-A forray into other API design approaches
+A forray into alternative API design approaches
 21 May 2019
 
 Will Madison
@@ -11,9 +11,9 @@ https://willmadison.com
 * What we'll cover
 
 - Ground Rules/Level Setting
-- Shortcomings of RESTful APIs
-- Remembering an old friend: Remote Procedure Call (RPC)
-- Examples: gRPC & Twirp
+- Shortcomings/Pain Points of RESTful APIs
+- Remembering an old friend: the Remote Procedure Call (RPC)
+- Example: gRPC
 - Questions
 
 * Ground Rules
@@ -33,6 +33,8 @@ https://willmadison.com
 
 * Overemphasis on Routing Schemes/Patterns
 
+* Overemphasis on Routing Schemes/Patterns
+
     Imagine a very, very simple mini-service which just updates a user’s email address. 
     How are we going to accept requests?
 
@@ -44,3 +46,91 @@ https://willmadison.com
 Other considerations:
 
 - What should it return? What headers should be set? What about versioning?
+
+* Overemphasis on RESTfulness a.k.a. "HATE"OAS
+
+* Overemphasis on RESTfulness
+
+.image beyond-restful/honest-or-nice.gif
+
+* Overemphasis on RESTfulness
+
+    "Everyone has a different opinion of how it should be done.
+    Data is spread across verbs, urls, query params, headers, and 
+    payloads. Everyone thinks everyone else doesn’t ‘get’ REST. 
+    If you try to suggest something other than REST in the office 
+    you become the subject of a witch hunt. It really is a cargo 
+    cult of pointlessness."
+
+    - Hacker News Comment on REST Flame Wars
+
+* Overemphasis on RESTfulness
+
+- `PUT` symantics for updates generally dictate that a full representation of the resource as retrieved via a `GET` call be provided with whatever modifications made in place. 
+- What should an API do when a `PUT` (or `PATCH`) is issued which includes Read Only fields?
+
+* Perpetual debate on which HTTP status codes make sense in context
+
+* Perpetual debate on which HTTP status codes make sense in context
+
+Common flame wars in REST API design
+
+- API returns `200` `OK` with error details in the body of the response
+- Should a POST return `200` `OK` or `201` `Created`? What if it performs an upsert?
+- API jokingly returns `HTTP` `418` `I'm` `a` `teapot` for invalid requests
+- If an API couldn't find a resource is an empty `200` `OK` response preferred or a `404` `Not` `Found`?
+- Should validation errors be a `400` `Bad` `Request` OR `412` `Precondition` `Failed`?
+
+* Perpetual debate on which HTTP status codes make sense in context
+
+.image beyond-restful/this-is-fine.gif
+
+* Keeping API Documentation in Sync with Implementation can be Cumbersome
+
+* Keeping API Documentation in Sync with Implementation can be Cumbersome
+
+.code beyond-restful/OpenApiSpecificationExample.java
+
+* A refreshing look at an old friend: Remote Procedure Calls
+
+* Advantages of RPCs
+
+- Procedures/Methods/Functions are generally the building blocks of all (most?) major programming languages
+- Most APIs exist to expose various actions that can take place within a given domain (i.e. Account, Warehouse, Restaurant, etc.)
+- When making use of specification languages like Thrift or Protocol Buffers the specification doubles as documentation
+- Thinking in terms of procedures helps to keep the surface area small(er)
+- Protocol Buffers natively support incremental changes to the data types in a backwards compatible way
+
+* Example: gRPC URL Shortener API
+
+* Example: gRPC
+
+URL Shortener API
+
+.code beyond-restful/reducto.proto /START RPC/,/END RPC/
+
+* Example: gRPC
+
+Core Domain Types
+
+.code beyond-restful/reducto.proto /START CORETYPES/,/END CORETYPES/
+
+* Example: gRPC
+
+Supporting Types
+
+.code beyond-restful/reducto.proto /START SUPPORTTYPES/,/END SUPPORTTYPES/
+
+* Example: gRPC URL Shortener API
+
+* Questions?
+
+.image beyond-restful/questions.gif
+
+* Resources
+
+.link https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f Twirp: a sweet new RPC framework for Go
+
+.link https://medium.freecodecamp.org/rest-is-the-new-soap-97ff6c09896d
+
+.link https://grpc.io/

@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.willmadison.reducto";
+option java_outer_classname = "ReductoProto";
+
+// START RPC OMIT
+
+package reducto;
+
+service Shortener {
+  rpc Shorten(ShortenRequest) returns (ReductoResponse);
+  rpc Expand(ExpandRequest) returns (ReductoResponse);
+}
+
+// END RPC OMIT
+
+// START SUPPORTTYPES OMIT
+
+message Error {
+   string code = 1;
+   string description = 2;
+   string msg = 3; 
+}
+
+message Metrics {
+  int64 total_clicks = 1;
+}
+
+// END SUPPORTTYPES OMIT
+
+// START CORETYPES OMIT
+
+message ShortenRequest {
+  string request_id = 1;
+  string long_url = 2;
+}
+
+message ReductoResponse {
+  string request_id = 1;
+  string short_url = 2;
+  string long_url = 3;
+  int64 create_date = 4;
+  repeated Error errors = 5;
+  repeated Error warnings = 6;
+  Metrics metrics = 7;
+}
+
+message ExpandRequest {
+  string request_id = 1;
+  string short_url = 2;
+}
+
+// END CORETYPES OMIT
