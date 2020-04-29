@@ -1,0 +1,186 @@
+Go Puh-leeze!
+Grokking gopls (pronounced "Go please")
+29 Apr 2020
+
+Will Madison
+Senior Software Engineer, Microsoft
+will@willmadison.com
+@IAmWillMadison
+
+* Why a talk about langservers?
+
+.image go-puhleeze/whyyy.webp
+
+* Well....
+
+* This handy action is why...
+
+.image go-puhleeze/my-old-friend.png _ 850
+
+* What we'll cover
+
+- Background/History
+- Brief Langserver Spec Primer
+- Request Lifecycle
+- Implementation Deep Dive
+- Q & A
+
+* Background/History
+
+.link https://github.com/Microsoft/language-server-protocol/wiki/Protocol-History LSP History
+
+- Builds upon the work/experiences of other editors (notably Vim/Emacs which have used language servers for a while) 
+- Erich Gamma (yes that Erich Gamma) credits Omnisharp as the inspiration/spark for LSP
+- VSCode initially was consuming multiple language server protocols (Omnisharp and Typescript)
+- As things usually go, consuming multiples protocols naturally led to the "Why not a standard?" conversation.
+- The language-server-protocol was born.
+
+* But why?
+
+* Rationale
+
+TL;DR;
+
+- Prior to the existence of this common protocol, each editor would have its own bespoke language support (often in the form of plugins [like vim-go]) 
+- Each plugin further fragmented editor tooling ecosystem, often duplicating effort(s) from platform to platform. 
+- Having a language server protocol allows each editor to have its own client without having to reinvent the wheel on functionality (i.e. refactoring, navigation, etc.).
+
+.image go-puhleeze/editors_now_vs_then_lsp.png _ 850
+
+* (Brief) Language Server Spec Primer
+
+.link https://microsoft.github.io/language-server-protocol/specifications/specification-current/
+
+High Level
+
+- Request and Response messages are JSON-RPC.
+- Content of messages is encoded in UTF-8 (any other encoding servers/clients are instructed to error on)
+
+* (Brief) Language Server Spec Primer
+
+Message Specification
+
+- Request(s) (Note: a Message is a simple type containing a string jsonrpc formatted message body)
+
+    interface RequestMessage extends Message {
+        /**
+        * The request id.
+        */
+        id: number | string;
+
+        /**
+        * The method to be invoked.
+        */
+        method: string;
+
+        /**
+        * The method's params.
+        */
+        params?: array | object;
+    }
+
+* (Brief) Language Server Spec Primer
+
+Message Specification
+
+- Response(s)
+
+    interface ResponseMessage extends Message {
+        /**
+        * The request id.
+        */
+        id: number | string | null;
+
+        /**
+        * The result of a request. This member is REQUIRED on success.
+        * This member MUST NOT exist if there was an error invoking the method.
+        */
+        result?: string | number | boolean | object | null;
+
+        /**
+        * The error object in case a request fails.
+        */
+        error?: ResponseError; // Note: Contains error.code [blend of JSON-RPC/protocol 
+                               //       specific codes], error.message, error.data?
+    }
+
+* (Brief) Language Server Spec Primer
+
+Message Specification
+
+- Notification(s) (Note: These are treated as "Fire and Forget" events)
+
+    interface NotificationMessage extends Message {
+        /**
+        * The method to be invoked.
+        */
+        method: string;
+
+        /**
+        * The notification's params.
+        */
+        params?: array | object;
+    }
+
+* (Brief) Language Server Spec Primer
+
+Message Specification
+
+- Diagnostic(s) (Note: These represent compiler errors/warnings, etc.)
+
+    export interface Diagnostic {
+        range: Range;
+        severity?: DiagnosticSeverity; // Sort of like log level [warning, error, hint, etc.]
+        code?: number | string;
+        source?: string;
+        message: string;
+        tags?: DiagnosticTag[];
+        relatedInformation?: DiagnosticRelatedInformation[];
+    }
+
+* (Brief) Language Server Spec Primer
+
+Message Specification
+
+- Navigation
+
+    interface Position {
+        line: number; 
+        character: number; // Bounded above by line length
+    }
+
+    interface Range {
+        start: Position; 
+        end: Position;
+    }
+
+    interface Location {
+        uri: DocumentUri; // Valid uri reference to the file (i.e. file:///home/will/somefile.go)
+        range: Range;
+    }
+
+* LSP: Request Lifecycle
+
+Go to Definition
+
+.image go-puhleeze/language-server-sequence.png _ 850
+
+* LSP: Implementation Deep Dive: Completion Request/Resolution
+
+* Questions?
+
+.image go-puhleeze/gopher.png
+
+* More Resources
+
+Language Server Protocol Implementations
+
+.link https://langserver.org/
+
+Language Server Protocol Specificiation
+
+.link https://microsoft.github.io/language-server-protocol/specifications/specification-current
+
+Go (Language Server Protocol) Implementation
+
+.link https://github.com/golang/tools/tree/master/gopls
