@@ -1,0 +1,159 @@
+A 12 Factor Tour: Cloud Native Go
+22 Jan 2020
+
+Will Madison
+Senior Software Engineer, Microsoft
+will@willmadison.com
+https://willmadison.com
+@IAmWillMadison
+
+* First, some shoutouts
+
+- @jcorry (John Corry)
+- @coyle (Dennis Coyle)
+- @briand787b (Brian D'Ostilio)
+
+* What's this whole 12-Factor hype about?
+
+* The 12 Factor Ethos
+
+    The twelve-factor app is a methodology for building software-as-a-service apps that:
+
+    - Use declarative formats for setup automation, to minimize time and cost for new developers 
+      joining the project;
+    
+    - Have a clean contract with the underlying operating system, offering maximum portability 
+      between execution environments;
+    
+    - Are suitable for deployment on modern cloud platforms, obviating the need for servers 
+      and systems administration;
+    
+    - Minimize divergence between development and production, enabling continuous deployment 
+      for maximum agility;
+    
+    - And can scale up without significant changes to tooling, architecture, or development practices.
+
+.link https://12factor.net
+
+* The Factors
+
+    I.    Codebase
+
+    II.   Dependencies
+
+    III.  Config
+
+    IV.   Backing services
+
+    V.    Build, release, run
+
+    VI.   Processes
+
+    VII.  Port binding
+
+    VIII. Concurrency
+
+    IX.   Disposability
+
+    X.    Dev/prod parity
+
+    XI.   Logs
+
+    XII.  Admin Processes
+
+* Tonight's Focus
+
+    III.  Config
+
+    IV.   Backing services
+
+    IX.   Disposability
+
+* Factor #3: Config(uration)
+
+* Back in the Day...
+
+.image a-twelve-factor-tour/back-in-my-day.gif
+
+* Factor #3: Config(uration)
+
+    An app’s config is everything that is likely to vary between deploys (staging, 
+    production, developer environments, etc). This includes:
+
+    - Resource handles to the database, Memcached, and other backing services
+
+    - Credentials to external services such as Amazon S3 or Twitter
+    
+    - Per-deploy values such as the canonical hostname for the deploy
+    
+    - Apps sometimes store config as constants in the code. This is a violation 
+      of twelve-factor, which requires strict separation of config from code. Config 
+      varies substantially across deploys, code does not.
+
+* Factor #3: Config(uration)
+
+- The twelve-factor app stores config in environment variables (often shortened to env vars or env). 
+
+Why?    
+
+- Env vars are easy to change between deploys without changing any code  
+- Unlike config files, there is little chance of them being checked into the code repo accidentally
+- Also unlike custom config files, or other config mechanisms such as Java System Properties, they are a language and OS-agnostic standard.
+
+* In Action
+
+.play a-twelve-factor-tour/config.go
+
+* Shortcomings...
+
+- Potentially insecure as environment variables are visible to all processes sharing the compute environment
+- Generally requires a restart to capture updates/changes (hot reload)
+- Non-Trivial to see the exact settings an application is running at runtime (assuming point #1 above is properly mitigated)
+
+* Factor #4 Backing Services
+
+* Backing Service vs. Config Principle: What's the Difference?
+
+.image a-twelve-factor-tour/spidey-pointing.jpg
+
+* Factor #4 Backing Services
+
+- Generally just a specific use case of Factor #3 (Will's Hot Take)
+
+* In Action
+
+.code a-twelve-factor-tour/services.go /START EXAMPLE/,/END EXAMPLE/
+
+* Factor #9 Disposability
+
+* Back in the Day...
+
+.image a-twelve-factor-tour/back-in-my-day-again.gif
+
+* Disposability = Fast Start-Up & Graceful Shutdowns
+
+.image a-twelve-factor-tour/go-fast.gif
+
+.image a-twelve-factor-tour/graceful.gif
+
+* Faster Start-Up Techniques
+
+* JIT Expensive Operations
+
+.code a-twelve-factor-tour/jit.go
+
+* Being Graceful
+
+- Largely...it depends on your context 
+
+Gracefulness implies one thing for web services, yet another for Queue processing/consumer daemons
+
+* Go Graceful Shutdown (Native)
+
+.code a-twelve-factor-tour/graceful.go /START SETUP/,/END SETUP/
+
+.play a-twelve-factor-tour/graceful.go /START GRACEFULLY/,/END GRACEFULLY/
+
+* Questions
+
+.image a-twelve-factor-tour/gopher.png
