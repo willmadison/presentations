@@ -1,10 +1,10 @@
 Beyond RESTful
-A forray into alternative API design approaches
+A forray into alternative API design techniques
 21 May 2019
 
 Will Madison
-Associate Director, Pivotal Labs
-wmadison@pivotal.io
+Engineering Manager, Microsoft
+William.Madison@microsoft.com
 https://willmadison.com
 @IAmWillMadison
 
@@ -21,7 +21,7 @@ https://willmadison.com
 - Be Kind
 - Critcize the Ideas NOT People
 - Have Fun
-- Be openminded
+- Be open-minded
 
 * Now that we have that out of the way...
 
@@ -31,9 +31,9 @@ https://willmadison.com
 
 * Shortcomings of RESTful APIS
 
-* Overemphasis on Routing Schemes/Patterns
+* Over-emphasis on Routing Schemes/Patterns
 
-* Overemphasis on Routing Schemes/Patterns
+* Over-emphasis on Routing Schemes/Patterns
 
     Imagine a very, very simple mini-service which just updates a user’s email address. 
     How are we going to accept requests?
@@ -45,7 +45,11 @@ https://willmadison.com
 
 Other considerations:
 
-- What should it return? What headers should be set? What about versioning?
+- What should it return? 
+- What headers should be set? 
+- What about versioning?
+- Is it reverse compatible?
+- Is it idempotent? (May influence which HTTP Verb we use)
 
 * Overemphasis on RESTfulness a.k.a. "HATE"OAS
 
@@ -68,7 +72,7 @@ Other considerations:
 
 - `PUT` symantics for updates generally dictate that a full representation of the resource as retrieved via a `GET` call be provided with whatever modifications made in place. 
 - What should an API do when a `PUT` (or `PATCH`) is issued which includes Read Only fields?
-- Idempotency? Don't get me started...
+- Idempotency and its impact on the HTTP verbs that make sense...
 - Should I set a `Location` header for a newly created resource?
 
 * Perpetual debate on which HTTP status codes make sense in context
@@ -104,7 +108,7 @@ Common flame wars in REST API design
 - Procedures/Methods/Functions are generally the building blocks of all (most?) major programming languages
 - Most APIs exist to expose various actions that can take place within a given domain (i.e. Account, Warehouse, Restaurant, etc.)
 - When making use of specification languages like Thrift or Protocol Buffers the specification doubles as documentation
-- Thinking in terms of procedures helps to keep the surface area small(er)
+- Thinking in terms of procedures helps to keep the API surface area small(er)
 - Protocol Buffers natively support incremental changes to the data types in a backwards compatible way
 
 * Example: gRPC URL Shortener API
